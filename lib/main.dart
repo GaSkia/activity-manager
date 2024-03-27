@@ -34,17 +34,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-       title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
-      body: const Center(
-       child: Column(
+      body: const Stack(
           children: <Widget>[
-           IconButtonAddTask(),
+            Positioned(
+             child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Create a task',
+              ),
+            ),
+            ),
+            /*Positioned(
+              bottom: 5,
+              right: 5,
+              child: IconButtonAddTask(),
+            ),*/
           ],
         ),
+      bottomSheet: const Stack(
+        children: <Widget> [
+          IconButtonAddTask(),
+        ],
       ),
     );
   }
@@ -60,18 +75,21 @@ class IconButtonAddTask extends StatefulWidget {
 class _IconButtonAddTaskPressed extends State<IconButtonAddTask> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Row(
       children: <Widget>[
-        Card(shadowColor: Colors.red,
-          child: IconButton(
-            iconSize: 32,
-            icon: const Icon(Icons.add),
-            tooltip: 'Create new task',
+        //Card(shadowColor: Colors.red,
+          //child:
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape:const CircleBorder(),
+              padding: const EdgeInsets.all(12),
+            ),
+            child: const Icon(Icons.add),
             onPressed: () { },
           ),
-        ),
+        //),
       ],
     );
   }
 }
+
